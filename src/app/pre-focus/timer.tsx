@@ -5,7 +5,7 @@ import Image from "next/image";
 import "../style.css";
 
 export default function MyTimer() {
-  function Timer({ expiryTimestamp }) {
+  function Timer({ expiryTimestamp }: { expiryTimestamp: Date }) {
     const { seconds } = useTimer({
       expiryTimestamp,
       onExpire: () => console.warn("onExpire called"),
@@ -64,7 +64,7 @@ export default function MyTimer() {
       );
     }
   }
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(25);
   useEffect(() => {
     //Implementing the setInterval method
     const interval = setInterval(() => {
@@ -75,14 +75,14 @@ export default function MyTimer() {
     return () => clearInterval(interval);
   }, [count]);
 
-  function Breath({ num }) {
+  function Breath({ num }: { num: number }) {
     if (num % 2 != 0) {
       return <Text>Breathe In</Text>;
     } else {
       return <Text>Breathe Out</Text>;
     }
   }
-  function BreatheImage({ num }) {
+  function BreatheImage({ num }: { num: number }) {
     if (num % 2 != 0) {
       return (
         <Image
@@ -102,7 +102,7 @@ export default function MyTimer() {
     }
   }
 
-  function stateController({ num }) {
+  function stateController({ num }: { num: number }) {
     if (num === 0) {
       const seconds = 30;
       const timeStamp = new Date(Date.now() + seconds * 1000);
