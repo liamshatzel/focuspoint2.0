@@ -3,7 +3,7 @@
     height: 100px;
     background-color: #DA371E;
     border-radius: 50%; /* Makes it a circle */
-    animation: growShrink linear 5.9s infinite; /* Apply the animation */
+    animation: growShrink linear 6s infinite; /* Apply the animation */
     z-index: -1;
     position:absolute;
     /* margin-left: -110px; */
@@ -16,5 +16,51 @@
     }
     50% {
       transform: scale(2.3); /* Double the size */
+    }
+  }
+
+.circle-2{
+    width: 100vw;
+    height: 100vw;
+    background-color: #DA371E;
+    border-radius: 50%; /* Makes it a circle */
+    animation: growShrink2 linear 30s; /* Apply the animation */
+    z-index: -1;
+    position: absolute;
+    top: -18vw;
+    overflow: hidden;
+    /* margin-left: -110px; */
+  }
+  
+  /* Keyframes for the grow/shrink animation */
+  @keyframes growShrink2 {
+    0%{
+      transform: scale(1); /* Original size */
+    }
+    100% {
+      transform: scale(0.1); /* Double the size */
+    }
+  }
+
+.circle-3{
+    width: 100vw;
+    height: 100vw;
+    background-color: #DA371E;
+    border-radius: 50%; /* Makes it a circle */
+    animation: growShrink3 linear 15s; /* Apply the animation */
+    z-index: -1;
+    position: absolute;
+    top: -18vw;
+    overflow: hidden;
+    /* margin-left: -110px; */
+  }
+  
+  /* Keyframes for the grow/shrink animation */
+  @keyframes growShrink3 {
+    0%{
+      transform: scale(0.1); /* Original size */
+    }
+    100% {
+      transform: scale(1); /* Double the size */
     }
   }

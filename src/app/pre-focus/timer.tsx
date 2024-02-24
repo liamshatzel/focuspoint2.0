@@ -4,34 +4,76 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import "../style.css";
 
-function Timer({ expiryTimestamp }) {
-  const { seconds } = useTimer({
-    expiryTimestamp,
-    onExpire: () => console.warn("onExpire called"),
-  });
-
-  return (
-    <div style={{ textAlign: "center" }}>
-      <div style={{ fontSize: "100px" }}>
-        <span>{String(seconds).padStart(2, "0")}s</span>
-      </div>
-    </div>
-  );
-}
-
 export default function MyTimer() {
-  const count = 0;
+  function Timer({ expiryTimestamp }) {
+    const { seconds } = useTimer({
+      expiryTimestamp,
+      onExpire: () => console.warn("onExpire called"),
+    });
 
-  //const [count, setCount] = useState(25);
-  //useEffect(() => {
-  //  //Implementing the setInterval method
-  //  const interval = setInterval(() => {
-  //    if (count > 0) setCount(count - 1);
-  //  }, 3000);
+    const breatheOutSec = 45;
+    const newTime = new Date(Date.now() + breatheOutSec * 1000);
+    const { seconds: newSeconds } = useTimer({
+      expiryTimestamp: newTime,
+      onExpire: () => console.warn("onExpire called"),
+    });
 
-  //  //Clearing the interval
-  //  return () => clearInterval(interval);
-  //}, [count]);
+    if (seconds != 0) {
+      return (
+        <div>
+          <Flex
+            direction="column"
+            align="center"
+            justify="center"
+            height="100%"
+          >
+            <Text fontSize="85px" align="center">
+              Breathe out and hold
+            </Text>
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "100px" }}>
+                <Text color="white">{String(seconds).padStart(2, "0")}s</Text>
+              </div>
+            </div>
+            <div className="circle-2"></div>
+          </Flex>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Flex
+            direction="column"
+            align="center"
+            justify="center"
+            height="100%"
+          >
+            <Text fontSize="85px" align="center">
+              Take a deep breath and hold
+            </Text>
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "100px" }}>
+                <Text color="white">
+                  {String(newSeconds).padStart(2, "0")}s
+                </Text>
+              </div>
+            </div>
+            <div className="circle-3"></div>
+          </Flex>
+        </div>
+      );
+    }
+  }
+  const [count, setCount] = useState(1);
+  useEffect(() => {
+    //Implementing the setInterval method
+    const interval = setInterval(() => {
+      if (count > 0) setCount(count - 1);
+    }, 3000);
+
+    //Clearing the interval
+    return () => clearInterval(interval);
+  }, [count]);
 
   function Breath({ num }) {
     if (num % 2 != 0) {
@@ -65,10 +107,7 @@ export default function MyTimer() {
       const seconds = 30;
       const timeStamp = new Date(Date.now() + seconds * 1000);
       return (
-        <div>
-          <Text fontSize="85px" align="center">
-            Breathe out and hold
-          </Text>
+        <div style={{ paddingTop: "20%" }}>
           <Timer expiryTimestamp={timeStamp}></Timer>
         </div>
       );
