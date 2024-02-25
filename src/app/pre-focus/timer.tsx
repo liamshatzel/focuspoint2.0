@@ -1,8 +1,11 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useTimer } from "react-timer-hook";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import "../style.css";
+import { useRouter } from "next/navigation";
 
 export default function MyTimer() {
   function Timer({ expiryTimestamp }: { expiryTimestamp: Date }) {
@@ -10,12 +13,12 @@ export default function MyTimer() {
       expiryTimestamp,
       onExpire: () => console.warn("onExpire called"),
     });
-
+    const router = useRouter();
     const breatheOutSec = 45;
     const newTime = new Date(Date.now() + breatheOutSec * 1000);
     const { seconds: newSeconds } = useTimer({
       expiryTimestamp: newTime,
-      onExpire: () => console.warn("onExpire called"),
+      onExpire: () => router.push("/focus-point"),
     });
 
     if (seconds != 0) {

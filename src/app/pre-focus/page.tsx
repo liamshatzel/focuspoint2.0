@@ -5,8 +5,6 @@ import React from "react";
 import MyTimer from "./timer";
 
 export default function Page() {
-  const seconds = 25;
-  const timeStamp = new Date(Date.now() + seconds * 1000);
   return (
     <div>
       <MyTimer />
