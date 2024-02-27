@@ -75,7 +75,7 @@ export default function PomoSetup({
             <Text fontWeight={"black"} fontSize={"24px"} paddingTop={"10%"}>
               Repetitions:
             </Text>
-            <NumberInput defaultValue={4} onChange={updateReps}>
+            <NumberInput defaultValue={4}>
               <NumberInputField />
               <NumberInputStepper>
                 <NumberIncrementStepper />
