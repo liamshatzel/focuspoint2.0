@@ -1,9 +1,9 @@
 // app/page.tsx
 "use client";
 import { Link } from "@chakra-ui/next-js";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useTimer } from "react-timer-hook";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Button } from "@chakra-ui/react";
 
 function MyTimer({ expiryTimestamp }: { expiryTimestamp: Date }) {
   const {
@@ -41,19 +41,18 @@ function MyTimer({ expiryTimestamp }: { expiryTimestamp: Date }) {
             <span>{String(minutes).padStart(2, "0")}</span>:
             <span>{String(seconds).padStart(2, "0")}</span>
           </div>
-          <p>{isRunning ? "Running" : "Not running"}</p>
-          <button onClick={start}>Start</button>
-          <button onClick={pause}>Pause</button>
-          <button onClick={resume}>Resume</button>
-          <button
+          <Button onClick={start}>Start</Button>
+          <Button onClick={pause}>Pause</Button>
+          <Button onClick={resume}>Resume</Button>
+          <Button
             onClick={() => {
               // Restarts to 5 minutes timer
-              const newTimeStamp = new Date(Date.now() + 300 * 1000);
+              const newTimeStamp = new Date(Date.now() + 1500 * 1000);
               restart(newTimeStamp, false);
             }}
           >
             Restart
-          </button>
+          </Button>
         </div>
       </Flex>
     </Flex>
@@ -61,23 +60,11 @@ function MyTimer({ expiryTimestamp }: { expiryTimestamp: Date }) {
 }
 
 export default function PomoTimer({ pomoParams }: { pomoParams: any }) {
-  const [minutes, setMinutes] = useState(pomoParams.minutes);
-
-  // Update `minutes` whenever `pomoParams.minutes` changes
   useEffect(() => {
-    setMinutes(pomoParams.minutes);
-    console.log("Got here: " + pomoParams.minutes);
-  }, [pomoParams.minutes]);
-
-  // Calculate `timeStamp` inside useEffect to ensure it uses the latest `minutes`
-  const [timeStamp, setTimeStamp] = useState(new Date());
-
-  useEffect(() => {
-    const newTimeStamp = new Date();
-    newTimeStamp.setMinutes(newTimeStamp.getMinutes() + Number(minutes));
-    setTimeStamp(newTimeStamp);
-    console.log("timeStamp updated to: ", newTimeStamp.getMinutes());
-  }, [minutes]);
-
+    console.log(pomoParams);
+  }, [pomoParams]);
+  const minutes = pomoParams.minutes;
+  const timeStamp = new Date();
+  timeStamp.setMinutes(timeStamp.getMinutes() + minutes);
   return <MyTimer expiryTimestamp={timeStamp} />;
 }

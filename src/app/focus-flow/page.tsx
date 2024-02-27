@@ -16,6 +16,7 @@ export default function Page() {
   useEffect(() => {
     console.log(pomoParams);
   }, [pomoParams]);
+
   return (
     <div className="scroller">
       <div

@@ -2,11 +2,6 @@
 "use client";
 import { Link } from "@chakra-ui/next-js";
 import React from "react";
+import FocusPoint from "../focus-point/focus-point";
 
-export default function Page() {
-  return (
-    <Link href="/about" color="blue.400" _hover={{ color: "blue.500" }}>
-      Welcome
-    </Link>
-  );
-}
+export default function Page() {}
