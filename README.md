@@ -1,3 +1,5 @@
+First place in the accessibility category in the Google Student Developer Club Hackathon https://hack4everyone.devpost.com/
+
 <img width="1618" alt="image" src="https://github.com/user-attachments/assets/6eab3946-2d38-4bbd-ba8c-b2d23719c2c0">
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
